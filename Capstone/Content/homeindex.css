@@ -1,0 +1,7 @@
+﻿body {
+}
+
+.scroll {
+    overflow-y: auto;
+    height:390px;
+}

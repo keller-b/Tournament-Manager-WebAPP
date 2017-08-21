@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebApplication1.Models.Team>
+@using WebApplication1.Models;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutSignedIn.cshtml";
+    int tournamentId = 0;
+    List<Team> Teams = Model.ToList();
+    if(Teams.Count > 0)
+    {
+        tournamentId = Teams[0].TournamentId;
+    }
+}
+
+<h2>Teams</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.id })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @if (item.Name == "Test")
+        {
+            <td name="Name">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        }
+        else
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        }
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TeamId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TeamId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TeamId })
+        </td>
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Back", "Index", "Tournaments") |
+    @Html.ActionLink("View Bracket", "Index", "Bracket",  new { id = tournamentId}, null)
+</div>

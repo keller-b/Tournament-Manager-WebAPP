@@ -1,0 +1,19 @@
+{
+  "name": "final-c-capstone-india",
+  "version": "1.0.0",
+  "description": "A capstone project for Tech Elevator 8/2017",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://spencer-lucas@bitbucket.org/te-cbus-cohort-2/final-c-capstone-india.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/te-cbus-cohort-2/final-c-capstone-india#readme",
+  "dependencies": {
+    "jquery-bracket": "^0.11.0"
+  }
+}

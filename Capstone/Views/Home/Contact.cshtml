@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Contact";
+    List<string> Contacts = new List<string>() { "jslucas", "bkeller", "joshmainini" };
+}
+<h2>@ViewBag.Title.</h2>
+<h3>Find us on GitHub</h3>
+
+@{ 
+    foreach(string contact in Contacts)
+    {
+        <p><a href="https://github.com/@contact">@@@contact</a></p>
+    }
+}

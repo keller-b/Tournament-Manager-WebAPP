@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Index";
+    if (User.Identity.IsAuthenticated == true)
+    {
+        Layout = "~/Views/Shared/_LayoutSignedIn.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+}
+@section scripts {
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.bracket.min.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/bracketView.css">
+    <script type="text/javascript" src="~/Scripts/jquery.bracket.min.js"></script>
+    <script type="text/javascript">
+        var saveData; //upcoming
+
+        $(document).ready(function () {
+            var url = '/Bracket/GetTournament/@ViewBag.Id'; //home/upcoming
+            $.ajax({ url: url, success: DataRetrieved, type: 'POST', dataType: 'json' });
+
+            function DataRetrieved(data) {
+                console.log(data);
+                saveData = data;
+
+                var container = $('#bracketDiv')
+                container.bracket({
+                    init: saveData,
+                    save: saveFn,
+                    disableTeamEdit: false,
+                    disableToolbar: false,
+                    teamWidth: 120,
+                    scoreWidth: 42,
+                    matchMargin: 80,
+                    roundMargin: 82,
+                    userData: "http://myapi"
+                })
+            }
+
+            function saveFn(data, userData) {
+                //var json = jQuery.toJSON(data)
+                //$('#saveOutput').text('POST ' + userData + ' ' + json)
+                /* You probably want to do something like this
+                jQuery.ajax("rest/"+userData, {contentType: 'application/json',
+                                              dataType: 'json',
+                                              type: 'post',
+                                              data: json})
+                */
+            }
+        });
+    </script>
+}
+<div id="bracketDiv">
+</div>

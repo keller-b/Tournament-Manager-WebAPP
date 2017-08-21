@@ -1,0 +1,89 @@
+﻿@using WebApplication1.Models;
+
+@model IEnumerable<WebApplication1.Models.Tournament>
+@{
+    ViewBag.Title = "Home Page";
+
+}
+
+@section scripts {
+    <link rel="stylesheet" type="text/css" href="~/Content/homeindex.css" />
+}
+
+<div class="jumbotron">
+    <h1>It's gonna be huge</h1>
+    <p class="lead">We gonna finish it</p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-4 scroll">
+        <h2>Active Tournaments</h2>
+        <table class="table">
+            @{
+                foreach (var item in Model)
+                {
+                    if (item.Start < DateTime.Now && item.End > DateTime.Now)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    string name = item.Name;
+                                }
+                                @Html.ActionLink(name, "Index", "Bracket", new { id = item.TournamentId }, null)
+                            </td>
+                        </tr>
+                                        }
+
+                                    }
+            }
+        </table>
+
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4 scroll">
+        <h2>Past Tournaments</h2>
+        <table class="table">
+            @{
+                foreach (var item in Model)
+                {
+                    if (item.End < DateTime.Now)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    string name = item.Name;
+                                }
+                                @Html.ActionLink(name, "Index", "Bracket", new { id = item.TournamentId }, null)
+                            </td>
+                        </tr>
+                                        }
+                                    }
+            }
+        </table>
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="col-md-4 scroll">
+        <h2>Upcoming Tournaments</h2>
+        <table class="table">
+            @{
+                foreach (var item in Model)
+                {
+                    if (item.Start > DateTime.Now)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    string name = item.Name;
+                                }
+                                @Html.ActionLink(name, "Index", "Bracket", new { id = item.TournamentId }, null)
+                            </td>
+                        </tr>
+                                        }
+                                    }
+            }
+        </table>
+
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
